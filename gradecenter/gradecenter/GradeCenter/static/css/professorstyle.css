@@ -1,0 +1,514 @@
+/*
+	Mohamed Soudy
+	msoudy@qatar.cmu.edu
+	Anas Halbawi
+	aih@qatar.cmu.edu
+*/
+
+html { overflow: -moz-scrollbars-vertical; }
+
+body
+{
+	background: url("images/header.png") repeat-x;
+	background-color:#e0e0e2;
+}
+
+ul
+{
+	list-style:none;
+	padding: 0px;
+	margin: 0px;
+}
+
+li p
+{
+	margin-left:5px;
+	margin-top: 5%;
+	margin-bottom: 5px;
+}
+
+li
+{	
+	vertical-align: middle;
+	height:30px;
+}
+
+header
+{
+	float:left;
+	margin-top:0px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	width: 100%;
+	color:white;
+}
+
+#logo
+{
+	float:left;
+}
+
+#signin
+{
+	float:right;
+}
+
+
+#courselist
+{
+	float:left;
+}
+
+
+#coursework
+{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	clear:left;
+	float:left;
+}
+
+#coursework_header ul li
+{
+	float:left;
+}
+
+.coursework_section ul li
+{
+	float:left;
+}
+
+.coursework_section_upload ul li
+{
+    float:left;
+}
+
+.addwork
+{
+    float:right;
+	margin-left:0.5px;
+	margin-top:4px;
+	width:100px;
+}
+
+.removework
+{
+    float:left;
+	margin-left:0.5px;
+	margin-top:4px;
+	width:100px;
+}
+
+input
+{
+	width:150px;
+}
+
+.first
+{
+	clear:left;
+}
+
+#gradeslist
+{
+	float:left;
+}
+
+#gradeslist_header
+{
+	clear:left;
+}
+
+.gradeslist_section ul li
+{
+	float:left;
+}
+
+#gradeslist_table
+{
+	clear:left;
+	float:left;
+}
+
+.css_name
+{
+	width:100px;	
+	float:left;
+}
+
+.css_grade
+{
+	width:100px;	
+	float:left;
+}
+
+.css_average
+{
+	width:170px;	
+	float:left;
+}
+
+input[for="css_name"]
+{
+	width:100px;	
+	float:left;
+}
+
+input[for="css_grade"]
+{
+	width:100px;	
+	float:left;
+}
+
+input[for="css_average"]
+{
+	width:170px;	
+	float:left;
+}
+
+#gradeuploader
+{
+	clear:left;
+	float:left;
+}
+
+#gradeuploader_header ul li
+{
+	float:left;
+}
+
+.gradeuploader_section ul li
+{
+	float:left;
+}
+
+.gradeuploader_section_uploader ul li
+{
+	float:left;
+}
+
+#gradeuploader_table
+{
+	clear:left;
+	float:left;
+}
+
+.css_gradeUpload
+{
+	width:120px;
+	float:left;
+}
+
+input[for="css_gradeUpload"]
+{
+	width:120px;
+	float:left;
+}
+
+input[for="css_nameUpload"]
+{
+	width:100px;
+	float:left;
+}
+
+#graphs
+{
+	clear:left;
+	float:left;
+}
+
+#selectgraph
+{
+	clear:left;
+	float:left;
+}
+
+#selectwork
+{
+	float:left;
+}
+
+#selectstudents
+{
+	float:left;
+}
+
+#selectshowaverage
+{
+	float:left;
+}
+
+#graphs_content
+{
+	clear:left;
+	float:left;
+	margin-bottom: 5px;
+}
+
+#getgraph
+{
+	clear:left;
+	float:right;
+}
+
+#chart
+{	
+	clear:left;
+	float:left;
+	margin-bottom:5px;
+}
+
+#chart_div
+{	
+	clear:left;
+	float:left;
+}
+
+#graphs_body
+{
+	clear:left;
+	float:left;
+}
+
+input
+{
+ 	font-family: Arial, Sans-Serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+    padding: 4px;
+    border: solid 1px #85b1de; 
+    background-color: #EDF2F7;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;	
+}
+
+input[for='title']
+{
+	width:100px;	
+	float:left;
+}
+
+input[for='description']
+{
+	width:250px;	
+	float:left;
+}
+
+input[for='duedate']
+{
+	width:100px;	
+	float:left;
+}
+
+input[for='duetime']
+{
+	width:100px;
+	float:left;
+}
+
+input[for='weight']
+{
+	width:100px;	
+	float:left;
+}
+
+input[for='maxpoints']
+{
+	width:100px;
+	float:left;
+	clear:left;
+}
+
+#coursework, #gradeuploader, #graphs
+{
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	padding: 0px 7px 7px 7px;
+	background: #310606;
+	-webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	clear:left;
+	float:left;
+	margin-right:10px;
+	margin-bottom: 10px;
+}
+
+
+#gradeslist
+{
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	padding: 0px 7px 7px 7px;
+	background: #310606;
+	-webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	float:left;
+	margin-right:10px;
+	margin-bottom: 10px;
+}
+#coursework > p, #gradeslist > p, #gradeuploader > p, #graphs > p
+{
+	color:white;
+	margin-top: 10px;
+	margin-bottom:10px;
+	float:left;
+}
+
+.css_title
+{
+	clear:left;
+	width:100px;
+	color:white;
+	
+}
+
+.css_description > p
+{
+	margin-top:5px;
+}
+
+.css_description
+{
+	width:250px;
+	color:white;
+}
+.css_duedate
+{
+	width:100px;
+	color:white;
+}
+.css_duetime
+{
+	width:100px;
+	color:white;
+}
+.css_weight
+{
+	width:100px;
+	color:white;
+}
+.css_maxpoints
+{
+	width:100px;
+	color:white;
+}
+
+#coursework_header
+{
+	clear:left;
+	float:left;
+}
+
+#coursework_table
+{
+	clear:left;
+	float:left;
+}
+
+
+
+#coursework_header ul li, #gradeslist_header ul li, #gradeuploader_header ul li
+{
+	background: -moz-linear-gradient(top, rgba(45,45,45,1) 1%, rgba(76,76,76,1) 54%, rgba(45,45,45,1) 100%, rgba(43,43,43,1) 100%, rgba(19,19,19,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(45,45,45,1)), color-stop(54%,rgba(76,76,76,1)), color-stop(100%,rgba(45,45,45,1)), color-stop(100%,rgba(43,43,43,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* W3C */
+	color:white;
+	float:left;
+}
+
+.firstheader
+{
+	background-color:#ffffff;
+	-webkit-border-radius: 7px 0px 0px 0px;
+	-moz-border-radius: 7px 0px 0px 0px;
+	border-radius: 7px 0px 0px 7px;
+	float:left;
+}
+
+.lastheader, #gradeuploader_header ul li:last-child
+{
+	background-color:#ffffff;
+	-webkit-border-radius: 0px 7px 0px 0px;
+	-moz-border-radius: 0px 7px 0px 0px;
+	border-radius: 0px 7px 7px 0px;
+	float:left;
+}
+
+input:focus
+{
+	border:solid 2px yellow;
+}
+
+.minmax
+{
+	margin-top:9px;
+	margin-right: 5px;
+	float:left;
+}
+
+#courselist > select
+{
+	margin-bottom: 10px;
+}
+
+a:hover
+{
+	color:gold;
+}
+
+a
+{
+	color:black;
+}
+
+#signin > p > a
+{
+	color:silver;
+}
+
+#signin > p > a:hover
+{
+	color:gold;
+}
+
+#signin
+{
+	font-size: 20px;
+}
+
+#centertitle > p
+{
+	margin-bottom:10px;
+	margin-top:10px;
+	color:black;
+	font-size:20px;
+	font-weight:bold;
+	
+}
+#centertitle
+{
+	padding: 0px 10px 0px 10px;
+	margin-top:44px;
+	margin-left:50px;
+	background-color: rgba(255,255,255,0.5);
+	float:left;
+	border-right:black 1px solid;
+	border-bottom:black 1px solid;
+	border-left:black 1px solid;
+
+}
+
+#signin
+{
+	float:right;
+}

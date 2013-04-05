@@ -1,0 +1,139 @@
+/*
+	Mohamed Soudy
+	msoudy@qatar.cmu.edu
+	Anas Halbawi
+	aih@qatar.cmu.edu
+*/
+
+html { overflow: -moz-scrollbars-vertical; }
+
+#courselist
+{
+	float:left;
+}
+
+
+#coursework
+{
+-moz-border-radius: 15px;
+border-radius: 15px;
+	clear:left;
+	float:left;
+}
+
+#coursework_header ul li
+{
+	float:left;
+}
+
+.coursework_section ul li
+{
+	float:left;
+}
+
+.coursework_section_upload ul li
+{
+    float:left;
+}
+
+ul
+{
+	list-style:none;
+}
+
+li
+{
+	border:1px solid black;
+	width:150px;
+}
+
+input
+{
+	width:150px;
+}
+
+.first
+{
+	clear:left;
+}
+
+#gradeslist
+{
+	clear:left;
+	float:left;
+}
+
+#gradeslist_header ul li
+{
+	float:left;
+}
+
+.gradeslist_section ul li
+{
+	float:left;
+}
+
+#gradeuploader
+{
+	clear:left;
+	float:left;
+}
+
+#gradeuploader_header ul li
+{
+	float:left;
+}
+
+.gradeuploader_section ul li
+{
+	float:left;
+}
+
+.gradeuploader_section_uploader ul li
+{
+	float:left;
+}
+
+#graphs
+{
+	clear:left;
+	float:left;
+}
+
+#selectgraph
+{
+	float:left;
+}
+
+#selectwork
+{
+	float:left;
+}
+
+#selectrange
+{
+	float:left;
+}
+
+#chart
+{	
+	clear:both;
+	float:left;
+}
+
+#chart_div
+{	
+	clear:both;
+	float:left;
+}
+#chart
+{
+	float:left;
+	clear: left;
+}
+
+#chart_div
+{
+	float:left;
+	clear: left;
+}

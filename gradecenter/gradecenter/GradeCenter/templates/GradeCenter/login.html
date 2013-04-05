@@ -1,0 +1,25 @@
+{% block content %}
+<head>
+	<title>Grade Center</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+    <link href="/static/css/loginstyle.css" rel="stylesheet" type="text/css"/> 
+</head>
+
+{% if message %}
+<p>{{ message }}
+{% endif %}
+
+<div id="logo">
+<img src="/static/images/logologin.png"/>
+</div>
+<div id="loginform">
+<form method="post" action="{% url django.contrib.auth.views.login  %}">
+{% csrf_token %}
+<p><label for='username'>Andrew ID</label><input type="text" name="username"/></p>
+<p><label for='password'>Password</label><input type="password" name="password"/></p>
+<p><button type="submit" value="login">Login</button><p>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+{% endblock %}
+</html>

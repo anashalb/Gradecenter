@@ -1,0 +1,13 @@
+{% for coursework in course_work %}
+	<div class="coursework_section" id="coursework_section_{{coursework.title}}" onmouseout="hideRemoveWork('R{{coursework.id}}');" onmouseover="showRemoveWork('R{{coursework.id}}');"> <!--Start of coursework_section-->
+		<ul>
+			<li class="first"><label for='title'></label><input for='title' onchange="glow(this);saveWorkEdit({{coursework.id}}0);" type="text" id="{{coursework.id}}0" value="{{coursework.title}}"/></li>
+			<li><label for='description'></label><input for='description' type="text" id="{{coursework.id}}1" onchange="glow(this);saveWorkEdit({{coursework.id}}1);" value="{{coursework.description}}" /></li>
+			<li><label for='duedate'></label><input for='duedate' type="text" class="date" id="{{coursework.id}}2" readonly="readonly" value="{{coursework.duedate|date:"M. d, Y"}}" /></li>
+			<li><label for='duetime'></label><input for='duetime' type="text" class="time" id="{{coursework.id}}3" readonly="readonly" value="{{coursework.duetime|time:"h:i a"|cut:"." }}"/></li>
+            <li><label for='weight'></label><input for='weight' type="text" id="{{coursework.id}}4" onchange="glow(this);saveWorkEdit({{coursework.id}}4);" value="{{coursework.weight}}" /></li>
+            <li><label for='maxpoints'></label><input for='maxpoints' type="text" id="{{coursework.id}}5" onchange="glow(this);saveWorkEdit({{coursework.id}}5);" value="{{coursework.maxpoints}}" /></li>
+		</ul>
+            <button name="coursework_section_{{coursework.title}}" class="removework" id="R{{coursework.id}}" onclick="removeWork({{coursework.id}});">Delete</button>
+	</div>
+{% endfor %}

@@ -1,0 +1,50 @@
+<div id="projections_table"> <!--Start of projections_table-->
+	<div id="projections_header"> <!--Start of projections_header-->
+		<ul>
+			<li class="proj_title"><p>Title</p></li>
+			<li class="proj_grade"><p>Grade</p></li>
+			<li class="proj_maxpoints"><p>Maximum Points</p></li>
+			<li class="proj_weight"><p>Weight(%)</p></li>
+		</ul>
+	</div> <!--End of projections_header-->
+	<div class="projections_content">  <!--Start of projections_content-->
+		{% if grades %}
+			{% for g in grades %}
+				<div class="projections_row"> <!--Start of projections_row-->
+					<ul>
+						<li class="first title proj_title"><p>{{g.workid.title}}</p></li>
+						<li><input class="proj_grade grade oldgrade" type="text" readonly="readonly" value="{{g.grade}}"/></li>
+						<li><input class="max oldmax proj_maxpoints" type="text" readonly="readonly" value="{{ g.workid.maxpoints }}"/></li>
+						<li><input class="proj_weight weight oldweight" type="text" readonly="readonly" value="{{ g.workid.weight }}"/></li>
+					</ul>
+				</div>
+			{% endfor %}
+		{% endif %}	
+		{% if remaining %}
+			{% for r in remaining %}
+				<div class="projections_row"> <!--Start of projections_row-->
+					<ul>
+						<li class="first title proj_title"><p>{{r.title}}</p></li>
+						<li><input type="text" class="proj_grade grade newgrade"/></li>
+						<li><input type="text" class="proj_maxpoints max newmax" readonly="readonly" value="{{ r.maxpoints }}"/></li>
+						<li><input type="text" class="proj_weight weight newweight" readonly="readonly" value="{{ r.weight }}"/></li>
+					</ul>
+				</div>
+			{% endfor %}
+		{% endif %}
+	<button id="best" onclick="autobest();">Best Case</button>
+	<button id="worst" onclick="autoworst();">Worst Case</button>
+	<button id="average" onclick="autoaverage();">Average</button>
+	<div id="wantedgrade">
+		<p>Desired Grade:</p>
+		<select onchange="perform(this.value);">
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+			<option value="D">D</option>
+			<option value="R">R</option>
+		</select>
+	</div>
+	<button id="calculate" onclick="calculate();">Show Graph</button>
+	</div> <!--End of projections_content-->
+</div> <!--End of projections_table-->

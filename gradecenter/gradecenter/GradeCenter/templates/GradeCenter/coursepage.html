@@ -1,0 +1,100 @@
+{% load i18n %}
+<html> 
+<head> 
+    <title>Grade Center</title> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="/static/js/coursepage.js"></script> 
+	<script type="text/javascript" src="/static/js/highcharts.js"></script>
+    <link href="/static/css/coursepagestyle.css" rel="stylesheet" type="text/css"/> 
+</head>
+ 
+<body align="left"> 
+	<div id="content">  <!--Start of content-->
+	<header>
+		<div id="logo"> <!--Start of logo-->
+		<img src="/static/images/gradelogo.png" />
+		</div> <!--End of logo-->
+		<div id="centertitle">
+		<p>{{course.number}} - {{course.name}}</p>
+		</div>
+		<div id="signin"> <!--Start of signin-->
+			<p>Welcome <a href="#" onclick="gotouser()">{{student.username}}</a> | <a href="#" onclick="logout()">Logout</a></p>
+		</div><!--end of signin-->
+	</header>
+
+	<div id="description"> <!-- Start of description-->
+		<div class="minmax">
+			<img class="desccontenttoggle" onclick="desccontenttoggle();" src="/static/images/minimize.png"/>
+		</div>
+		<p>Course Description<p>
+		<div id="desc_content"> <!-- Start of desc_content -->
+			<p>{{course.description}}</p>
+		</div> <!-- End of desc_content -->
+	</div><!-- End of description-->
+
+	
+	<div id="coursework"> <!-- Start of coursework-->
+		<div class="minmax">
+			<img class="courseworktoggle" onclick="courseworktoggle();" src="/static/images/minimize.png"/>
+		</div>
+		<p>Course work</p>
+		<div id="coursework_table"> <!--Start of coursework_table-->
+			<div id="coursework_header"> <!--Start of coursework_header-->
+				<ul>
+					<li class="firstheader course_title"><p>Title</p></li>
+					<li class="course_description"><p>Description</p></li>
+					<li class="course_duedate"><p>Due Date</p></li>
+					<li class="course_duetime"><p>Due Time</p></li>
+					<li class="course_weight"><p>Weight(%)</p></li>
+					<li class="lastheader course_maxpoints"><p>Maximum Points</p></li>
+				</ul>
+			</div> <!--End of coursework_header-->
+			<div class="coursework_content">  <!--Start of coursework_content-->
+				{% if work %}
+					{% for w in work %}
+						<div class="coursework_row"> <!--Start of coursework_row-->
+							<ul>
+								<li class="first course_title"><p>{{ w.title }}</p></li>
+								<li class="course_description"><p>{{ w.description }}</p></li>
+								<li class="course_duedate"><p>{{ w.duedate }}</p></li>
+								<li class="course_duetime"><p>{{ w.duetime }}</p></li>
+								<li class="course_weight"><p>{{ w.weight }}</p></li>
+								<li class="last course_maxpoints"><p>{{ w.maxpoints }}</p></li>
+							</ul>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div> <!--End of coursework_content-->
+		</div> <!--End of coursework_table-->
+	</div> <!-- End of coursework -->
+
+	<div id="graphs"> <!--Start of graphs-->
+		<div class="minmax">
+			<img class="graphstoggle" onclick="graphstoggle();" src="/static/images/minimize.png"/>
+		</div>
+		<p>Graphs</p>
+		<div id="selectgraph"> <!--Start of selectgraph-->
+			<select onchange="graph(this.value,{{course.number}},{{instance.year}},'{{student.username}}');"> 
+				<option value="0">Select Graph Type</option>
+				<option value="1">Grade Projections</option>
+				<option value="2">Grade Distribution</option>
+				<option value="3">Class average</option>
+			</select>
+		</div> <!--End of selectgraph-->
+		<div id="graphs_body">
+		<div id="graphs_content"> <!--Start of graphs_content-->
+		<div id="chart">
+		<div id="chart_div"></div>
+		</div id="chart">	
+		</div> <!--End of graphs_content-->
+
+
+	<div id="projections"> <!-- Start of projections-->
+	</div> <!-- End of projections-->
+	</div>
+	</div> <!--End of graphs-->
+	
+	</div> <!--End of content-->
+	
+</body>

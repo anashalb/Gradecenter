@@ -1,0 +1,16 @@
+from django.http import HttpResponse
+from GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
+
+
+
+#This is the login page
+def index(request, andrew = None):
+	andrewi = Professor.objects.filter(andrewid = andrew)
+	print "A"
+	if len(andrewi) != 0:
+		from GradeCenter.viewsP import professor
+		return professor(request,andrew)
+	else:
+		from GradeCenter.viewsS import student
+		return student(request,andrew)
+

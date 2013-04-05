@@ -1,0 +1,434 @@
+body
+{
+	background: url("images/header.png") repeat-x;
+	background-color:#e0e0e2;
+}
+
+ul
+{
+	list-style:none;
+	padding: 0px;
+	margin: 0px;
+}
+
+li p
+{
+	margin-left:5px;
+	margin-top: 5%;
+	margin-bottom: 5px;
+}
+
+li
+{	
+	vertical-align: middle;
+	height:30px;
+}
+
+header
+{
+	float:left;
+	margin-top:0px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	width: 100%;
+	color:white;
+}
+
+#logo
+{
+	float:left;
+}
+
+#signin
+{
+	float:right;
+}
+
+
+.first
+{
+	clear:left;
+}
+
+#coursework_table
+{
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	float:left;
+	clear:left;
+}
+
+
+#coursework_header ul li
+{
+	background: -moz-linear-gradient(top, rgba(45,45,45,1) 1%, rgba(76,76,76,1) 54%, rgba(45,45,45,1) 100%, rgba(43,43,43,1) 100%, rgba(19,19,19,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(45,45,45,1)), color-stop(54%,rgba(76,76,76,1)), color-stop(100%,rgba(45,45,45,1)), color-stop(100%,rgba(43,43,43,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(45,45,45,1) 1%,rgba(76,76,76,1) 54%,rgba(45,45,45,1) 100%,rgba(43,43,43,1) 100%,rgba(19,19,19,1) 100%); /* W3C */
+	color:white;
+	float:left;
+}
+
+.firstheader
+{
+	background-color:#ffffff;
+	-webkit-border-radius: 7px 0px 0px 0px;
+	-moz-border-radius: 7px 0px 0px 0px;
+	border-radius: 7px 0px 0px 0px;
+	float:left;
+}
+
+.lastheader
+{
+	background-color:#ffffff;
+	-webkit-border-radius: 0px 7px 0px 0px;
+	-moz-border-radius: 0px 7px 0px 0px;
+	border-radius: 0px 7px 0px 0px;
+	float:left;
+}
+
+.coursework_row ul li
+{
+	float:left;
+}
+
+#coursework_header ul li
+{
+	float:left;
+}
+
+#coursework_content
+{
+	float:left;
+	clear:left;
+}
+
+#coursework_header
+{
+	float:left;
+	clear:left;
+}
+
+	
+.coursework_row
+{
+	float:left;
+	clear:left;
+}
+
+.coursework_row ul li
+{
+	float:left;
+}
+
+#description
+{
+	clear:left;
+}
+
+#description > p
+{
+	color:white;
+	margin-top:10px;
+	margin-bottom:5px;
+	float:left;
+}
+
+#desc_content > p
+{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#desc_content
+{
+	clear:left;
+	float:left;
+	border:solid 1px white;
+	background: -moz-linear-gradient(top, rgba(229,229,229,1) 0%, rgba(242,242,242,1) 54%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(229,229,229,1)), color-stop(54%,rgba(242,242,242,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* W3C */
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+#graphs
+{
+	float:left;
+}
+
+#graphs_content
+{
+	clear:left;
+	float:left;
+}
+
+#selectgraph
+{
+	float:left;
+	clear:left;
+}
+
+#chart_div
+{	
+	float:left;
+	margin-top: 10px;
+}
+
+#projections
+{
+	float:left;
+	margin-left: 10px;
+}
+
+#projections_table
+{
+	float:left;
+	margin-top:10px;
+}
+
+#projections_header ul li
+{
+	float:left;
+	color:white;
+}
+
+.projections_row ul li
+{
+	color: white;
+	float: left;
+	height:40px;
+}
+
+
+.coursework_row ul
+{
+	float:left;
+	border-top:solid 1px white;
+	background: -moz-linear-gradient(top, rgba(229,229,229,1) 0%, rgba(242,242,242,1) 54%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(229,229,229,1)), color-stop(54%,rgba(242,242,242,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(229,229,229,1) 0%,rgba(242,242,242,1) 54%,rgba(229,229,229,1) 100%); /* W3C */
+}
+
+#coursework_content
+{
+	-webkit-border-radius: 0px 0px 7px 7px;
+	-moz-border-radius: 0px 0px 7px 7px;
+	border-radius: 0px 0px 7px 7px;
+	float:left;
+}
+
+.coursework_row:last-child ul
+{
+	-webkit-border-radius: 0px 0px 7px 7px;
+	-moz-border-radius: 0px 0px 7px 7px;
+	border-radius: 0px 0px 7px 7px;
+	float:left;
+}
+
+.coursework_row ul:hover
+{
+	background: #B5B5B5;
+	color: white;
+}
+
+#coursework, #description, #graphs
+{
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	padding: 0px 7px 7px 7px;
+	background: #310606;
+	-webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
+	clear:left;
+	float:left;
+	margin-right:10px;
+	margin-bottom: 10px;
+}
+
+#coursework > p
+{
+	margin-top:10px;
+	margin-bottom:5px;
+	color: white;
+	float: left;
+}
+
+.course_duedate
+{
+	width:120px;
+}
+
+.course_duetime
+{
+	width:110px;
+}
+
+.course_number
+{
+	width:130px;
+}
+
+.course_description > p
+{
+	margin-top: 5px;
+}
+
+.course_description
+{
+	width:250px;
+}
+
+.course_title
+{
+	width:100px;
+}
+
+.course_weight
+{
+	width:100px;
+}
+
+.course_maxpoints
+{
+	width:150px;
+}
+
+input
+{
+ 	font-family: Arial, Sans-Serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+    padding: 4px;
+    border: solid 1px #85b1de; 
+    background-color: #EDF2F7;
+	margin-right:2px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;	
+}
+
+.proj_title
+{
+	width:70px;
+}
+
+.proj_weight
+{
+	width:100px;
+}
+
+.proj_maxpoints
+{
+	width:150px;
+}
+
+.proj_grade
+{
+	width:70px;
+}
+
+#graphs > p
+{
+	margin-top:10px;
+	margin-bottom:10px;
+	color: white;
+	float:left;
+}
+
+#graphs_body
+{
+	clear:left;
+	float:left;
+}
+
+.minmax
+{
+	margin-top:9px;
+	margin-right: 5px;
+	float:left;
+}
+
+#wantedgrade p
+{
+	color:white;
+	float:left;
+}
+
+#wantedgrade > select
+{
+	float:left;
+	margin-top:13px;
+	margin-left:5px;
+}
+
+#calculate
+{
+	clear:left;
+	float:left;
+}
+
+a:hover
+{
+	color:gold;
+}
+
+a
+{
+	color:black;
+}
+
+#signin
+{
+	font-size: 20px;
+}
+
+#signin > p > a
+{
+	color:silver;
+}
+
+#signin > p > a:hover
+{
+	color:gold;
+}
+
+#centertitle > p
+{
+	margin-bottom:10px;
+	margin-top:10px;
+	color:black;
+	font-size:20px;
+	font-weight:bold;
+	
+}
+#centertitle
+{
+	padding: 0px 10px 0px 10px;
+	margin-top:44px;
+	margin-left:50px;
+	background-color: rgba(255,255,255,0.5);
+	float:left;
+	border-right:black 1px solid;
+	border-bottom:black 1px solid;
+	border-left:black 1px solid;
+
+}
+
+#signin
+{
+	float:right;
+}

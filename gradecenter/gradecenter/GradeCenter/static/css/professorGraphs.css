@@ -1,0 +1,112 @@
+ul
+{
+	list-style:none;
+}
+
+li
+{
+	border:1px solid black;
+	width:150px;
+}
+
+#logo
+{
+	width:100px;
+	float:left;
+}
+
+#signin
+{
+	float:right;
+}
+
+.first
+{
+	clear:left;
+}
+
+#coursework
+{
+	clear:left;
+	float:left;
+}
+
+#coursework_header ul li
+{
+	float:left;
+}
+
+.coursework_row ul li
+{
+	float:left;
+}
+
+#description
+{
+	clear:left;
+}
+
+#desc_content
+{
+	float:left;
+}
+
+#graphs
+{
+	clear:left;
+	float:left;
+}
+
+#selectgraph
+{
+	float:left;
+}
+
+#selectwork
+{
+	float:left;
+}
+
+#selectrange
+{
+	float:left;
+}
+
+#chart
+{	
+	clear:both;
+	float:left;
+}
+
+#chart_div
+{	
+	clear:both;
+	float:left;
+}
+
+#draw
+{
+	clear:both;
+	float:left;
+}
+
+#projections
+{
+	float:left;
+	clear:left;
+}
+#projections_header ul li
+{
+	float:left;
+}
+
+.projections_row ul li
+{
+	float:left;
+	height:40px;
+}
+
+.projections_row ul li input
+{
+	width:150px;
+}

@@ -1,0 +1,196 @@
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render_to_response, HttpResponseRedirect
+from django.core.context_processors import csrf
+from django.views.decorators.csrf import csrf_exempt
+from GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
+import datetime
+import calendar
+from django.utils import simplejson
+from collections import defaultdict
+from django.contrib.auth.decorators import login_required
+
+#Student
+#Request: andrewid
+#Response: "course" "grade"
+@login_required(login_url='/gradecenter/login/')
+def professor(request, course_number = None, year = None):
+    professor = Professor.objects.get(andrewid = request.user)						#professor username
+    course_instances = Course_Instance.objects.filter(professor = professor).order_by('year')	#courses that professor is teaching
+
+    if( (course_number == None) and (year == None) ):
+        course_instance = course_instances[0]
+        course_number = course_instance.courseid.number
+    elif( year == None ):
+        try:
+            course_instance = course_instances.get(courseid = Course.objects.get(number = course_number))
+        except Course_Instance.DoesNotExist:
+            return HttpResponse ("<h1>Course does not exist </h1>") 
+        except Course.DoesNotExist:
+            return HttpResponse ("<h1>Course does not exist </h1>") 
+    else:
+        try:
+            course_instance = course_instances.get(courseid = Course.objects.get(number = course_number) , year = year )
+        except Course_Instance.DoesNotExist:
+            return HttpResponse ("<h1>Course does not exist </h1>")
+        except Course.DoesNotExist:
+            return HttpResponse ("<h1>Course does not exist </h1>") 
+
+    course_work = Work.objects.filter(courseid = course_instance).order_by('id')	#All course work for specific course
+
+    enrolled = Enroll.objects.filter(courseid = course_instance).order_by('id')	#Students enrolled in specific course
+
+    final_grade_list = list()
+    grades_all = list()
+    graded = list()
+    flag = True
+
+    for s in enrolled:
+        usergrades = list()
+        student = {'student':s.studentid.andrewid}
+        try:
+            grade = Final_Grade.objects.get(student = s.studentid, courseinstance = course_instance)
+            final = {'grade':grade.grade}
+        except Final_Grade.DoesNotExist:
+            final = {'grade':'-'}
+        final_grade_list.append([student,final])
+        for w in course_work:
+            try:
+                curgrade = Grade.objects.get(workid = w, student = s.studentid)
+                usergrades.append({'id':w.id,'grade':curgrade.grade})
+                if flag:
+                    graded.append (w.title)
+            except Grade.DoesNotExist:
+                usergrades.append({'id':w.id,'grade':'-'})
+        grades_all.append([student,{'grades':usergrades}])
+        flag = False
+
+
+
+    print final_grade_list 
+        
+
+    #finalgrades = Final_Grade.objects.filter (student = studentid).order_by('id')
+    #return HttpResponse("Hello Me")
+    return render_to_response('GradeCenter/professor.html', { 'course_instances' : course_instances,
+                                                              'course_instanceid' : course_instance.id,
+                                                              'course_work' : course_work,
+                                                              'grades_all' : grades_all,                                                            
+                                                              'course_number' : course_number,
+                                                              'course_professor_andrewid' : course_instance.professor.andrewid,
+                                                              'course_year' : course_instance.year,
+                                                              'final_grade_list' : final_grade_list,
+                                                              'enrolled': enrolled,
+                                                              'graded_coursework' : graded })
+
+@csrf_exempt
+def addwork(request):
+    course_professor_andrewid = request.POST['course_professor_andrewid']
+    professor = Professor.objects.get( andrewid = course_professor_andrewid)
+    course_number = request.POST['course_number']
+    course = Course.objects.get(number = course_number)
+    course_year = request.POST['course_year']
+    course_instance = Course_Instance.objects.get(professor = professor, courseid = course, year = course_year)
+    title = request.POST['title']
+    description = request.POST['description']
+
+    duedate = request.POST['duedate']
+    month = duedate[0:3]
+    d = dict((v,k) for k,v in enumerate(calendar.month_abbr))
+    month = d[month]
+    date = datetime.date(int(duedate[9:13]), int(month),int(duedate[5:7]))
+
+    duetime = request.POST['duetime']
+    time = datetime.time(int(duetime[0:2]), int(duetime[3:5]))
+    weight = request.POST['weight']
+    maxpoints = request.POST['maxpoints']
+    work = Work(title = title, courseid = course_instance, duedate = date, duetime = time, description = description, weight = weight, maxpoints = maxpoints)
+    work.save()
+    return render_to_response('GradeCenter/courseworksection.html',{'course_work': [work]})
+
+@csrf_exempt
+def saveworkedit(request):
+    
+    work = Work.objects.get(id = request.POST['workid'])
+    #newwork = Work(id = work.id, title = work.title, courseid = work.courseid, description = work.description, duedate = work.duedate, duetime = work.duetime, weight = work.weight, maxpoints = work.maxpoints)
+    #Work.objects.get(id = request.POST['workid']).delete();
+    if(request.POST['field'] == "title"):
+        work.title = request.POST['content']
+    elif(request.POST['field'] == "description"):
+        work.description = request.POST['content']
+    elif(request.POST['field'] == "duedate"):
+        duedate = request.POST['content']
+        month = duedate[0:3]
+        d = dict((v,k) for k,v in enumerate(calendar.month_abbr))
+        month = d[month]
+        date = datetime.date(int(duedate[9:13]), int(month),int(duedate[5:7]))
+        work.duedate = date
+    elif(request.POST['field'] == "duetime"):
+        duetime = request.POST['content']
+        if (duetime[6] == 'p'):
+            duetime = str(int(duetime[0])+1) + str(int(duetime[1])+2) + duetime[2:]
+        elif ((duetime[0] == '1') and (duetime[1] == '2')):
+            duetime = "00" + duetime[2:]
+        time = datetime.time(int(duetime[0:2]), int(duetime[3:5]))
+        work.duetime = time
+    elif(request.POST['field'] == "weight"):
+        work.weight = request.POST['content']
+    elif(request.POST['field'] == "maxpoints"):
+        work.maxpoints = request.POST['content']
+
+    work.save()
+    return HttpResponse(str(work.weight) + "%")
+
+@csrf_exempt
+def savegradeedit(request):
+    
+    work = Work.objects.get(id = request.POST['workid'])
+    student = Student.objects.get(andrewid = request.POST['student'])
+    value = request.POST['grade']
+
+    try:
+        grade = Grade.objects.get(workid = work, student = student)
+        grade.grade = value
+        grade.save()
+    except Grade.DoesNotExist:
+        newgrade = Grade(workid = work, student = student, grade = value)
+        newgrade.save()
+        
+
+    return HttpResponse(work)
+
+@csrf_exempt
+def savefinalgradeedit(request):
+    
+    course_instance = Course_Instance.objects.get(id = request.POST['courseinstanceid'])
+    student = Student.objects.get(andrewid = request.POST['student'])
+    grade = request.POST['grade']
+
+    try:
+        finalgrade = Final_Grade.objects.get(student = student, courseinstance = course_instance)
+        finalgrade.grade = grade
+        finalgrade.save()
+    except Final_Grade.DoesNotExist:
+        newfinalgrade = Final_Grade(student = student, courseinstance = course_instance, grade = grade)
+        newfinalgrade.save()
+        
+
+    return HttpResponse(grade)
+
+@csrf_exempt
+def removework(request):
+    try:
+        work = Work.objects.get(id = request.POST['workid'])
+        course_instance = work.courseid
+        professor = course_instance.professor
+        if(professor.andrewid == request.user.username):
+            work.delete()
+            print "done"
+        return render_to_response(work)
+    except Work.DoesNotExist:
+        return None
+
+
+
+
+
+

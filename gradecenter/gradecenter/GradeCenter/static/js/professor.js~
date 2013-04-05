@@ -1,0 +1,237 @@
+/*
+    Anas Halbawi
+	aih@qatar.cmu.edu 
+	Mohamed Soudy
+	msoudy@qatar.cmu.edu 
+*/
+
+function init()
+{
+   $(".coursework_section > button").hide();
+}
+
+//$(function(){
+//$("#11").mouseover(function() {alert("yo");});
+//
+//});
+
+function showRemoveWork(x)
+{
+    $("#" + x).show();
+}
+
+function hideRemoveWork(x)
+{
+    $("#" + x).hide();
+}
+
+function removeWork(id)
+{
+    $.ajax({
+             url: "/gradecenter/removework/",
+             type: "POST",
+             data: "workid=" + id,
+             processData: false,
+             contentType: false,
+             success: function (data) {
+                    $(data).insertBefore($(".coursework_section_upload"));
+                    $("<li>" + title + "</li>").appendTo($("#gradeuploader_header > ul"));
+                    $("<li><label for=\"grade\"></label><input type=\"text\" value=\"-\" name=\"grade\"></li>").appendTo($(".gradeuploader_section > ul"));
+             }
+         });
+}
+
+	
+$(function(){
+	$("#datepicker").datepicker({});
+	$("#datepicker").datepicker( "option", "dateFormat", "M. dd, yy" );
+	var dates = document.getElementsByClassName('date');
+
+	for (i=0; i < dates.length; i++)
+	{
+		val = dates[i].value
+		$('#'+dates[i].id).datepicker({onClose: function(dateText) {saveWorkEdit(this.id,""); }});
+		$('#'+dates[i].id).datepicker( "option", "dateFormat", "M. dd, yy" );
+		$('#'+dates[i].id).datepicker( "setDate" , val );
+	}
+
+});
+
+$(function(){
+	$("#timepicker").timepicker({ampm: true,});
+	//$("#timepicker").timepicker( "option", "timeFormat", "hh:mm:ss" );
+	var times = document.getElementsByClassName('time');
+
+	for (i=0; i < times.length; i++)
+	{
+        var id = times[i].id;
+       // alert(times[i].value);
+		$('#'+times[i].id).timepicker({ampm: true, onClose: function(dateText) {var title = document.getElementById((parseInt(this.id/10))*10).value;saveWorkEdit(this.id,title); } });
+		//$('#'+times[i].id).timepicker( "option", "timeFormat", "hh:mm:ss" );
+		//$('#'+times[i].id).timepicker( "setTime" , times[i].value );
+	}
+});
+
+
+
+
+function addToWork( course_professor_andrewid, course_number, course_year ){
+    var title = $(".coursework_section_upload > ul > li > label[for='title']").parent().find("input").val();
+    var description = $(".coursework_section_upload > ul > li > label[for='description']").parent().find("input").val();
+    var duedate = $(".coursework_section_upload > ul > li > label[for='duedate']").parent().find("input").val();
+    var duetime = $(".coursework_section_upload > ul > li > label[for='duetime']").parent().find("input").val();
+    var weight = $(".coursework_section_upload > ul > li > label[for='weight']").parent().find("input").val();
+    var maxpoints = $(".coursework_section_upload > ul > li > label[for='maxpoints']").parent().find("input").val();
+
+    if((title == "") || (description == "") || (duedate == "") || (duetime == "") || (weight == "") || (maxpoints == ""))
+	{
+		alert("Please fill in ALL the fields");
+	}
+    else
+    {
+	    $.ajax({
+             url: "/gradecenter/addwork/",
+             type: "POST",
+             data: "title=" + title + "&description=" + description + "&duedate=" + duedate + "&duetime=" + duetime + "&maxpoints=" + maxpoints
+                 + "&weight=" + weight + "&course_professor_andrewid=" + course_professor_andrewid + "&course_number=" + course_number + "&course_year=" + course_year,
+             processData: false,
+             contentType: false,
+             success: function (data) {
+                    $(data).insertBefore($(".coursework_section_upload"));
+                    $("<li>" + title + "</li>").appendTo($("#gradeuploader_header > ul"));
+                    $("<li><label for=\"grade\"></label><input type=\"text\" value=\"-\" name=\"grade\"></li>").appendTo($(".gradeuploader_section > ul"));
+             }
+         });
+        $(".coursework_section_upload > ul > li > label[for='title']").parent().find("input").attr("value","");
+        $(".coursework_section_upload > ul > li > label[for='description']").parent().find("input").attr("value","");
+        $(".coursework_section_upload > ul > li > label[for='duedate']").parent().find("input").attr("value","");
+        $(".coursework_section_upload > ul > li > label[for='duetime']").parent().find("input").attr("value","");
+        $(".coursework_section_upload > ul > li > label[for='weight']").parent().find("input").attr("value","");
+        $(".coursework_section_upload > ul > li > label[for='maxpoints']").parent().find("input").attr("value","");
+    }
+}
+
+function getcourse()
+{
+
+}
+
+function saveWorkEdit(id, title)
+{
+    workid = parseInt(id/10);
+    var element = document.getElementById(id).value;
+
+    var field;
+
+    switch(id%10)
+    {
+    case 0:
+        field = "title"
+        break;
+    case 1:
+        field = "description"       
+        break
+    case 2:
+        field = "duedate"
+        break;
+    case 3:
+        field = "duetime"
+        break;
+    case 4:
+        field = "weight"
+        break;
+    case 5:
+        field = "maxpoints"
+        break;
+    default:
+        return;
+    }
+ 
+        $.ajax({
+            url: "/gradecenter/saveworkedit/",
+            type: "POST",
+            data: "workid=" + workid + "&content=" + element + "&field=" + field,
+            processData: false,
+            contentType: false,    
+    });
+}
+
+function searchKeyPress(e, id, title)
+{
+        // look for window.event in case event isn't passed in
+        if (window.event)
+        {
+            e = window.event; 
+        }
+        if (e.keyCode == 13)
+        {               
+           // $('#' + x).slideUp();
+            saveWorkEdit(id, title)
+           // $('#' + x).slideDown();
+
+        }
+}
+
+function saveGradeEdit(student, workid)
+{
+    var grade = document.getElementById(student+workid).value;
+   // alert(grade);
+    $.ajax({
+        url: "/gradecenter/savegradeedit/",
+        type: "POST",
+        data: "workid=" + workid + "&student=" + student + "&grade=" + grade,
+        processData: false,
+        contentType: false     
+});
+}
+
+
+function searchKeyPress2(e, student, workid)
+{
+        // look for window.event in case event isn't passed in
+        if (window.event)
+        {
+            e = window.event; 
+        }
+        if (e.keyCode == 13)
+        {               
+            $('#' + student + workid).slideUp();
+            saveGradeEdit(student, workid)
+            $('#' + student + workid).slideDown();
+
+        }
+}
+
+function saveFinalGradeEdit(student, courseinstanceid)
+{
+    var grade = document.getElementById(student).value;
+   // alert(grade);
+    $.ajax({
+        url: "/gradecenter/savefinalgradeedit/",
+        type: "POST",
+        data: "student=" + student + "&grade=" + grade  + "&courseinstanceid=" + courseinstanceid,
+        processData: false,
+        contentType: false     
+});
+}
+
+
+function searchKeyPressFinalGrade(e, student, courseinstanceid)
+{
+        // look for window.event in case event isn't passed in
+        if (window.event)
+        {
+            e = window.event; 
+        }
+        if (e.keyCode == 13)
+        {               
+            $('#' + student).slideUp();
+            saveFinalGradeEdit(student, courseinstanceid)
+            $('#' + student).slideDown();
+
+        }
+}
+
+function logout(){
+    location.href= "/gradecenter/logout";
+}

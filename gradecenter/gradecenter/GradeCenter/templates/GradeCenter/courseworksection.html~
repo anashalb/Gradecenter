@@ -1,0 +1,13 @@
+{% for coursework in course_work %}
+	<div class="coursework_section" id="coursework_section_{{coursework.title}}" onmouseout="hideRemoveWork({{coursework.id}});" onmouseover="showRemoveWork({{coursework.id}});"> <!--Start of coursework_section-->
+		<ul>
+			<li class="first"><label for='title'></label><input type="text" id="{{coursework.id}}0" onkeypress="searchKeyPress(event, {{coursework.id}}0, '{{coursework.title}}');" value="{{coursework.title}}"/></li>
+			<li><label for='description'></label><input type="text" id="{{coursework.id}}1" onkeypress="searchKeyPress(event, {{coursework.id}}1, '{{coursework.title}}');" value="{{coursework.description}}" /></li>
+			<li><label for='duedate'></label><input type="text" class="date" id="{{coursework.id}}2" readonly="readonly"  onkeypress="searchKeyPress(event, {{coursework.id}}2, '{{coursework.title}}');" value="{{coursework.duedate|date:"M. d, Y"}}" /></li>
+			<li><label for='duetime'></label><input type="text" class="time" id="{{coursework.id}}3" readonly="readonly" onkeypress="searchKeyPress(event, {{coursework.id}}3, '{{coursework.title}}');" value="{{coursework.duetime|time:"h:i a"|cut:"." }}"/></li>
+            <li><label for='weight'></label><input type="text" id="{{coursework.id}}4" onkeypress="searchKeyPress(event, {{coursework.id}}4, '{{coursework.title}}');" value="{{coursework.weight}}" /></li>
+            <li><label for='maxpoints'></label><input type="text" id="{{coursework.id}}5" onkeypress="searchKeyPress(event, {{coursework.id}}5, '{{coursework.title}}');" value="{{coursework.maxpoints}}" /></li>
+		</ul>
+            <button class="removework" id="{{coursework.id}}" onclick="alert('yo');">Delete</button>
+	</div>
+{% endfor %}

@@ -1,0 +1,153 @@
+<!--
+	Mohamed Soudy
+	msoudy@qatar.cmu.edu
+	Anas Halbawi
+	aih@qatar.cmu.edu
+-->
+
+<html>
+<head>
+    <title>Grade Centre</title>
+	<link type="text/css" href="/static/css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="/static/js/highcharts.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-timepicker.addon.js"></script>
+    <script type="text/javascript" src="/static/js/professorGraph.js"></script> 
+    <script src="/static/js/professor.js"></script>
+    <link href="/static/css/professorstyle.css" rel="stylesheet" type="text/css"/>
+</head>
+	
+<body> <!-- Start Body -->
+<div id="content"> <!-- Start Content -->
+    <div id="courselist"> <!-- Start Course List -->
+		<select>
+            {% for courseinstance in course_instances %}
+                <option onclick="getcourse();return false;">{{courseinstance.courseid.number}}</option>
+            {% endfor %}
+		</select>
+    </div> <!-- End Course List -->
+
+
+	<div id="coursework"> <!-- Start of coursework-->
+			<p>Course work</p>
+			<div id="coursework_table"> <!--Start of coursework_table-->
+				<div id="coursework_header"> <!--Start of coursework_header-->
+					<ul>
+						<li>Title</li>
+						<li>Description</li>
+						<li>Due Date</li>
+						<li>Due Time</li>
+                        <li>Weight (%)</li>
+                        <li>Max Points</li>
+					</ul>
+				</div> <!--End of coursework_header-->
+				<div class="coursework_content">  <!--Start of coursework_content-->
+                {% include "GradeCenter/courseworksection.html" with course_work=course_work %}
+					<div class="coursework_section_upload">
+						<ul>
+							<li class="first"><label for='title'></label><input type="text" name="title"/></li>
+							<li><label for='description'></label><input type="text" name="description"/></li>
+							<li><label for='duedate'></label><input id="datepicker" readonly="readonly" type="text" name="duedate"/></li>
+							<li><label for='duetime'></label><input id="timepicker" readonly="readonly" type="text" name="duetime"/></li>
+                            <li><label for='weight'></label><input type="text" name="weight"/></li>
+                            <li><label for='maxpoints'></label><input type="text" name="maxpoints"/></li>
+                       		<a href="#" onclick="addToWork('{{course_professor_andrewid}}', {{course_number}}, {{course_year}});return false;">Add To Work</a>
+						</ul>
+					</div>
+				</div> <!--End of coursework_content-->
+			</div> <!--End of coursework_table-->
+	</div> <!-- End of coursework -->
+
+	<div id="gradeslist"><!--Start of gradeslist-->
+		<div id="gradeslist_header"><!--Start of gradeslist_header-->
+			<ul>
+				<li>Name</li>
+				<li>Grade</li>
+			</ul>
+		</div><!--end of gradeslist_header-->
+		<div id="gradeslist_content"><!--Start of gradeslist_content-->
+        {% for student,grade in final_grade_list %}
+			<div class="gradeslist_section"><!--Start of gradeslist_section-->
+				<ul>
+                    <li class="first"><label for='andrewid'></label><input type="text" name="andrewid" value="{{student.student}}" readonly="readonly"/></li>
+					<li><label for='finalgrade'></label><input type="text" id="{{student.student}}" onkeypress="searchKeyPressFinalGrade(event, '{{student.student}}',{{course_instanceid}});" value="{{grade.grade}}"></li>
+				</ul>
+			</div> <!-- End of gradeslist_section-->
+        {% endfor %}
+		</div><!--end of gradeslist_content-->	
+    </div><!--end of gradeslist-->
+
+	<div id="gradeuploader">
+        <div id="gradeuploader_header"> <!--Start of gradeuploader_header-->
+	        <ul>
+		        <li class="first">Name</li>
+                {% for coursework in course_work %}
+	                <li>{{coursework.title}}</li>
+                {% endfor %}        
+	        </ul>
+        </div> <!--End of gradeuploader_header-->
+        <div class="gradeuploader_content">  <!--Start of gradeuploader_content-->
+
+			{% for s,g in grades_all %}
+	            <div class="gradeuploader_section"> <!--Start of gradeuploader_section-->
+		            <ul>
+                        <li class="first"><label for='studentname'></label><input type="text" name="studentname" value="{{s.student}}" readonly="readonly"/></li>
+						{% for b in g.grades %}
+                        <li><label for='grade'></label><input id="{{s.student}}{{b.id}}"onkeypress="searchKeyPress2(event, '{{s.student}}', {{b.id}});"  type="text" name="grade" value="{{b.grade}}"/></li>
+						{% endfor %}               
+		            </ul>           
+	            </div>
+        	{% endfor %}
+        </div> <!--End of gradeuploader_content-->
+    </div>
+		<div id="graphs"> <!--Start of graphs-->
+		<p>Graphs</p>
+		<div id="graphs_content"> <!--Start of graphs_content-->
+			<div id="selectgraph"> <!--Start of selectgraph-->
+				<select id="typeofchart" onchange="params(this.id, this.value);"> 
+					<option value="0">Select Graph Type</option>
+					<option value="1">Grade Projections</option>
+					<option value="2">Grade Distribution</option>
+					<option value="3">Class average</option>
+				</select>
+			</div> <!--End of selectgraph-->
+
+			<div id="selectwork"> <!--Start of selectwork-->
+				<select id="work" onchange="params(this.id, this.value);"> 
+					<option value=0>Select Coursework</option>
+					<option value="entire">Entire coursework</option>
+			{% if graded_coursework %}
+				{% for g in graded_coursework %}
+					<option value="{{g}}">{{g}}</option>
+				{% endfor %}
+			{% endif %}
+				</select>
+			</div> <!--End of selectwork-->
+
+			<div id="selectstudents"> <!--Start of selectrange-->
+				<select id="students" onchange="params(this.id, this.value);"> 
+					<option value=0>Select Student</option>
+					<option value="entire">Entire Class</option>
+				{% if enrolled %}
+				{% for s in enrolled %}
+					<option value="{{s.studentid.andrewid}}">{{s.studentid.andrewid}}</option>
+				{% endfor %}
+				{% endif %}
+				</select>
+			</div> <!--End of selectrange-->
+		</div> <!--End of graphs_content-->
+		<div id="chart">
+		<div id="chart_div"></div>
+		</div id="chart">
+		<button onclick="getchart({{course_number}},{{course_year}}); return false;">Get Chart</button>	
+    </div> <!--end of graphs-->
+    <div id="display">
+        </div>
+    </div> <!-- End Content -->
+    <div id="commentBox">
+    </div>
+</div>
+</body> <!-- End Content -->
+</html>
+

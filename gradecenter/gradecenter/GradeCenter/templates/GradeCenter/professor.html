@@ -1,0 +1,50 @@
+<!--
+	Mohamed Soudy
+	msoudy@qatar.cmu.edu
+	Anas Halbawi
+	aih@qatar.cmu.edu
+-->
+
+<html>
+<head>
+    <title>Grade Center</title>
+	<link type="text/css" href="/static/css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="/static/js/highcharts.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-timepicker.addon.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.color.js"></script>
+    <script type="text/javascript" src="/static/js/professorGraph.js"></script>
+    <script src="/static/js/professor.js"></script>
+    <link href="/static/css/professorstyle.css" rel="stylesheet" type="text/css"/>
+</head>
+	
+<body onload="init();"> <!-- Start Body -->
+<header>
+		<div id="logo"> <!--Start of logo-->
+		<img src="/static/images/gradelogo.png" />
+		</div> <!--End of logo-->
+		<div id="centertitle">
+		<p>{{course_number}} - {{course_name}}</p>
+		</div>
+		<div id="signin"> <!--Start of signin-->
+			<p>Welcome <a href="#" onclick="gotouser()">{{course_professor_andrewid}}</a> | <a href="#" onclick="logout()">Logout</a></p>
+		</div><!--end of signin-->
+	</header>
+<div id="content"> <!-- Start Content -->
+    <div id="courselist"> <!-- Start Course List -->
+		<select onchange="getcourse(this.value, '{{course_professor_andrewid}}');return false;">
+                <option value="">Course Select</option>
+            {% for courseinstance in course_instances %}
+                <option value="{{courseinstance.courseid.number}} {{courseinstance.year}}">{{courseinstance.courseid.number}} {{courseinstance.year}}</option>
+            {% endfor %}
+		</select>
+    </div> <!-- End Course List -->
+
+    <div id="professorpage">
+       {%include "GradeCenter/professorcoursecontent.html" %}
+    </div> <!--End of professorpage-->
+    </div><!-- End Content -->
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+<html> 
+<head> 
+    <title>Grade Center</title> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+    <script src="/static/js/student.js"></script> 
+    <link href="/static/css/studentstyle.css" rel="stylesheet" type="text/css"/> 
+</head> 
+<body align="left"> 
+	<header>
+		<div id="logo"> <!--Start of logo-->
+		<img src="/static/images/gradelogo.png" />
+		</div> <!--End of logo-->
+		<div id="signin"> <!--Start of signin-->
+			<p>Welcome <a href="#" onclick="gotouser()">{{student.username}}</a> | <a href="#" onclick="logout()">Logout</a></p>
+		</div><!--end of signin-->
+	</header>
+	<div id="content">  <!--Start of content-->
+	<div id="courseworkandnotifications"> <!-- Start of courseworkandnotifications-->
+		<div id="coursework"> <!-- Start of coursework-->
+			<div class="minmax">
+				<img class="courseworktoggle" onclick="courseworktoggle();" src="/static/images/minimize.png"/>
+			</div>
+			<p>Course work</p>
+			<div id="selectcourse">
+				<select onchange="selectcourse(this.value);">
+						<option value="all">All Courses</option>
+					{% if courses %}
+						{% for c in courses %}
+							<option value="{{c.courseid.id}}">{{c.courseid.courseid.name}}</option>
+						{% endfor %}
+					{% endif %}
+				</select>
+			</div>
+			<div id="coursework_table"> <!--Start of coursework_table-->
+				{% include "GradeCenter/studentcoursework.html" %}
+			</div> <!--End of coursework_table-->
+		</div> <!-- End of coursework -->
+		
+		<div id="notifications"> <!--Start of notifications-->
+			<div class="minmax">	
+				<img class="notificationstoggle" onclick="notificationstoggle();" src="/static/images/minimize.png"/>
+			</div>
+			<p>Notifications</p>
+			<div id="notifications_table"> <!--Start of notifications_table-->
+				<div id="notifications_header" class="header"> <!--Start of notifications_header-->
+					<ul>
+						<li class="firstheader number"><p>Course Number</p></li>
+						<li class="coursename"><p>Course Name</p></li>
+						<li class="description"><p>Description</p></li>
+						<li class="lastheader duetime"><p>Due Time</p></li>
+					</ul>
+				</div> <!--End of notifications_header-->
+				<div class="notifications_content">  <!--Start of notifications_content-->
+					{% if notifications %}
+						{% for notify in notifications %}
+						<div class="notifications_row"> <!--Start of notification_row-->
+							<ul>
+								<li class="first number"><p>{{ notify.courseid.courseid.number }}</p></li>
+								<li class="coursename"><p>{{ notify.courseid.courseid.name }}</p></li>
+								<li class="description"><p>{{ notify.title}}</p></li>
+								<li class="lastme duetime"><p>{{ notify.duetime }}</p></li>
+							</ul>
+						</div>
+						{% endfor %}
+					{% endif %}
+				</div> <!--End of notifications_content-->
+			</div> <!--End of notifications_table-->
+		</div> <!--End of notifications-->
+
+		</div> <!-- End of courseworkandnotifications-->
+		<div id="listandgpa">
+		<div id="courselist"> <!--Start of course list-->
+			<div class="minmax">
+				<img class="courselisttoggle" onclick="courselisttoggle();" src="/static/images/minimize.png"/>
+			</div>
+			<p>Course List</p>
+			<div id="courselist_table"> <!--Start of courselist_table-->
+				<div id="courselist_header" class="header"> <!--Start of courselist_header-->
+					<ul>
+						<li class="firstheader number"><p>Course Number</p></li>
+						<li class="coursename"><p>Course Name</p></li>
+						<li class="lastheader grade"><p>Grade</p></li>
+					</ul>
+				</div> <!--End of courselist_header-->
+				<div id="courselist_content">  <!--Start of courselist_content-->
+					{% if finalgrades %}
+						{% for grade in finalgrades %}
+							<div class="courselist_row"> <!--Start of courselist_row-->
+								<ul>
+									<li class="first number"><p><a href="#" onclick="getCoursePage({{ grade.courseinstance.courseid.number }}, {{ grade.courseinstance.year }});">{{ grade.courseinstance.courseid.number }}</a></p></li>
+									<li class="coursename"><p><a href="#" onclick="getCoursePage({{ grade.courseinstance.courseid.number}}, {{ grade.courseinstance.year }});">{{ grade.courseinstance.courseid.name }}</a></p></li>
+									<li class="last grade"><p>{{ grade.grade }}</p></li>
+								</ul>
+							</div> <!--Start of courselist_row-->
+						{% endfor %}
+					{% endif %}
+				</div> <!--End of courselist_content-->
+			</div> <!--End of courselist_table-->
+		</div> <!--End of course list-->
+
+		<div id="gpa"> <!-- Start of gpa-->
+			<div class="minmax">
+				<img class="gpatoggle" onclick="gpatoggle();" src="/static/images/minimize.png"/>
+			</div>
+			<p>Calculate your GPA</p>
+			<div id="gpa_table">
+			<div id="gpa_header" class="header"> <!--Start of gpa_header-->
+				<label for="name">Course</label>
+				<label for="unit">Units</label>
+				<label for="grade">Grade</label>
+			</div><!-- End of gpa_header-->
+				<div id="gpa_content"> <!-- Start of gpa_content-->
+					<div class="gpa_row">
+						<input type="text" for="name" name="name"/>
+						<input type="text" for="unit" name="unit"/>
+						<input type="text" for="grade" name="grade"/>
+						<button class="addrow" onclick="addRow()">+</button>
+					</div><!-- End of gpa_row-->
+				</div> <!-- End of gpa_content-->
+				<button class="calculate" onclick="calculateGPA()">Calculate</button>
+				<label for="gpa">GPA </label><input id="finalGPA" type="text" for="gpa"  name="gpa" readonly="readonly"/>
+				</div>
+			</div> <!-- End of gpa-->
+		</div>
+			</div> <!--End of content-->
+</body>

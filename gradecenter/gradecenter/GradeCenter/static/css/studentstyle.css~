@@ -1,0 +1,89 @@
+ul
+{
+	list-style:none;
+}
+
+li
+{
+	border:1px solid black;
+	width:150px;
+}
+
+input
+{
+	width:150px;
+}
+
+#logo
+{
+	width:100px;
+	float:left;
+}
+
+#signin
+{
+	float:right;
+}
+
+.first
+{
+	clear:left;
+}
+
+#notifications
+{
+	clear:left;
+	float:left;
+}
+
+#notifications_header ul li
+{
+	float:left;
+}
+
+.notifications_row ul li
+{
+	float: left;
+}
+
+#coursework
+{
+	clear:left;
+	float:left;
+}
+
+#coursework_header ul li
+{
+	float:left;
+}
+
+.coursework_row ul li
+{
+	float:left;
+}
+
+#courselist
+{
+	clear:left;
+	float:left;
+}
+
+#courselist_header ul li
+{
+	float:left;
+}
+
+.courselist_row ul li
+{
+	float:left;
+}
+
+#gpa
+{
+	float:left;
+}
+
+#gpa_row input
+{
+	float:left;
+}

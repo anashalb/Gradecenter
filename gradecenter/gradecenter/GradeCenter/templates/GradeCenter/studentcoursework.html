@@ -1,0 +1,26 @@
+<div id="coursework_header" class="header"> <!--Start of coursework_header-->
+		<ul>
+			<li class="firstheader number"><p>Course Number</p></li>
+			<li class="coursename"><p>Course Name</p></li>
+			<li class="description"><p>Description</p></li>
+			<li class="duedate"><p>Due Date</p></li>
+			<li class="lastheader duetime"><p>Due Time</p></li>
+		</ul>
+	</div> <!--End of coursework_header-->
+	<div id="coursework_content">  <!--Start of coursework_content-->
+		{% if coursework %}
+			{% for allwork in coursework %}
+				{% for work in allwork %}
+				<div class="coursework_row"> <!--Start of coursework_row-->
+					<ul>
+						<li class="first number"><p>{{ work.courseid.courseid.number}}</p></li>   <!-- course number from course table -->
+						<li class="coursename"><p>{{ work.courseid.courseid.name }}</p></li>						<!-- course name from course table -->
+						<li class="description"><p>{{ work.title }}</p></li>
+						<li class="duedate"><p>{{ work.duedate }}</p></li>
+						<li class="last duetime"><p>{{ work.duetime }}</p></li>
+					</ul>
+				</div>
+				{% endfor %}
+			{% endfor %}
+		{% endif %}
+	</div> <!--End of coursework_content-->

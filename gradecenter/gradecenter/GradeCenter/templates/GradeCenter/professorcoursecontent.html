@@ -1,0 +1,152 @@
+	<div id="coursework"> <!-- Start of coursework-->
+			<div class="minmax">
+					<img class="courseworktoggle" onclick="courseworktoggle();" src="/static/images/minimize.png"/>
+			</div>
+			<p>Course work</p>
+			<div id="coursework_table"> <!--Start of coursework_table-->
+				<div id="coursework_header"> <!--Start of coursework_header-->
+					<ul>
+						<li class="css_title firstheader"><p>Title</p></li>
+						<li class="css_description"><p>Description</p></li>
+						<li class="css_duedate"><p>Due Date</p></li>
+						<li class="css_duetime"><p>Due Time</p></li>
+                        <li class="css_weight"><p>Weight (%)</p></li>
+                        <li class="css_maxpoints lastheader"><p>Max Points</p></li>
+					</ul>
+				</div> <!--End of coursework_header-->
+				<div class="coursework_content">  <!--Start of coursework_content-->
+                {% include "GradeCenter/courseworksection.html" with course_work=course_work %}
+					<div class="coursework_section_upload">
+						<ul>
+							<li class="first"><label for='title'></label><input for='title' type="text" name="title"/></li>
+							<li><label for='description'></label><input for='description' type="text" name="description"/></li>
+							<li><label for='duedate'></label><input for='duedate' id="datepicker" readonly="readonly" type="text" name="duedate"/></li>
+							<li><label for='duetime'></label><input for='duetime' id="timepicker" readonly="readonly" type="text" name="duetime"/></li>
+                            <li><label for='weight'></label><input for='weight' type="text" name="weight"/></li>
+                            <li><label for='maxpoints'></label><input for='maxpoints' type="text" name="maxpoints"/></li>
+                       		<button class="addwork" onclick="addToWork({{course_number}}, {{course_year}});return false;">Add To Work</button>
+						</ul>
+					</div>
+				</div> <!--End of coursework_content-->
+			</div> <!--End of coursework_table-->
+	</div> <!-- End of coursework -->
+
+	<div id="gradeslist"><!--Start of gradeslist-->
+	<div class="minmax">
+			<img class="finalgradestoggle" onclick="finalgradestoggle();" src="/static/images/minimize.png"/>
+	</div>
+	<p>Final Grades List</p>
+		<div id="gradeslist_table">
+		<div id="gradeslist_header"><!--Start of gradeslist_header-->
+			<ul>
+				<li class="firstheader css_name"><p>Name</p></li>
+				<li class="css_grade"><p>Grade</p></li>
+				<li class="lastheader css_average"><p>Overall Average (%)</p></li>
+			</ul>
+		</div><!--end of gradeslist_header-->
+		<div id="gradeslist_content"><!--Start of gradeslist_content-->
+        {% for student,finalgrade,average in final_grade_list %}
+			<div class="gradeslist_section" id="gradeslist_section_{{student}}"><!--Start of gradeslist_section-->
+				<ul>
+                    <li class="first"><label for='andrewid'></label><input for="css_name" type="text" name="andrewid" value="{{student}}" readonly="readonly"/></li>
+					<li><label for='finalgrade'></label><input type="text" for="css_grade" id="{{student}}final" onchange="glow(this);saveFinalGradeEdit('{{student}}',{{course_instanceid}});" value="{{finalgrade}}"></li>
+					<li><label for='overallaverage'></label><input type="text" for="css_average" id="{{student}}average" value="{{average}}" readonly="readonly"></li>
+				</ul>
+			</div> <!-- End of gradeslist_section-->
+        {% endfor %}
+		</div><!--end of gradeslist_content-->
+		</div>
+    </div><!--end of gradeslist-->
+
+	<div id="gradeuploader">
+		<div class="minmax">
+				<img class="gradeuploadertoggle" onclick="gradeuploadertoggle();" src="/static/images/minimize.png"/>
+		</div>
+		<p>Grade uploader</p>
+		<div id="gradeuploader_table">
+        <div id="gradeuploader_header"> <!--Start of gradeuploader_header-->
+	        <ul>
+		        <li class="first firstheader css_name"><p>Name<p></li>
+                {% for coursework in course_work %}
+	                <li id ="E{{coursework.id}}" class="css_gradeUpload"><p>{{coursework.title}} (/{{coursework.maxpoints}})</p></li>
+                {% endfor %}
+	        </ul>
+        </div> <!--End of gradeuploader_header-->
+        <div class="gradeuploader_content">  <!--Start of gradeuploader_content-->
+
+			{% for s,g in grades_all %}
+	            <div id="gradeuploader_section_{{s}}" class="gradeuploader_section"> <!--Start of gradeuploader_section-->
+		            <ul>
+                        <li class="first"><label for='studentname'></label><input for="css_nameUpload" type="text" name="studentname" value="{{s}}" readonly="readonly"/></li>
+						{% for b in g.grades %}
+                        <li><label for='{{b.title}}'></label><input for="css_gradeUpload" id="{{s}}{{b.id}}" onchange="glow(this);saveGradeEdit('{{s}}', {{b.id}});" alt="{{b.maxpoints}}" type="text" name="{{b.weight}}" value="{{b.grade}}"/></li>
+						{% endfor %}               
+		            </ul>           
+	            </div>
+        	{% endfor %}
+                <div id="gradeuploader_section_average" class="gradeuploader_section"> <!--Start of gradeuploader_section-->
+		            <ul>
+                        <li class="first"><label for='average'></label><input for="css_nameUpload" type="text" name="average" value="Average" readonly="readonly"/></li>
+		            {% for average in allworkaverages %}
+                        <li><label for='{{average.title}}averagegrade'></label><input for="css_gradeUpload" id="Average{{average.id}}" type="text" name="averagegrade" value="{{average.grade}}" readonly="readonly"/></li>    
+    	            {% endfor %}       
+		            </ul>           
+	            </div>
+        </div> <!--End of gradeuploader_content-->
+    </div>	
+    </div>
+	<div id="graphs"> <!--Start of graphs-->
+		<div class="minmax">
+				<img class="graphstoggle" onclick="graphstoggle();" src="/static/images/minimize.png"/>
+		</div>
+		<p>Graphs</p>
+		<div id="graphs_content"> <!--Start of graphs_content-->
+			<div id="selectgraph"> <!--Start of selectgraph-->
+				<select id="typeofchart" onchange="params(this.id, this.value);"> 
+					<option value="0">Select Graph Type</option>
+					<option value="2">Grade Distribution</option>
+					<option value="3">Class average</option>
+				</select>
+			</div> <!--End of selectgraph-->
+
+			<div id="selectwork"> <!--Start of selectwork-->
+				<select id="work" onchange="params(this.id, this.value);"> 
+					<option value="entire">Select Coursework</option>
+					<option value="entire">Entire coursework</option>
+			{% if graded_coursework %}
+				{% for g in graded_coursework %}
+					<option value="{{g}}">{{g}}</option>
+				{% endfor %}
+			{% endif %}
+				</select>
+			</div> <!--End of selectwork-->
+
+			<div id="selectstudents"> <!--Start of selectrange-->
+				<select id="students" onchange="params(this.id, this.value);"> 
+					<option value="entire">Select Student</option>
+					<option value="entire">Entire Class</option>
+				{% if enrolled %}
+				{% for s in enrolled %}
+					<option value="{{s.studentid.andrewid}}">{{s.studentid.andrewid}}</option>
+				{% endfor %}
+				{% endif %}
+				</select>
+			</div> <!--End of selectrange-->
+
+			<div id="selectshowaverage"> <!--Start of showaverage-->
+				<select id="showaverage" onchange="params(this.id, this.value);"> 
+					<option value="1">Show average</option>
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</select>
+			</div> <!--End of showaverage-->
+		</div> <!--End of graphs_content-->
+		<div id="graphs_body">
+		<div id="chart">
+		<div id="chart_div"></div>
+		</div id="chart">
+		<button id="getgraph" onclick="getchart({{course_number}},{{course_year}}); return false;">Get Graph</button>
+	</div><!--End of graphs_body-->	
+    </div> <!--end of graphs-->
+        <div id="display">
+            </div>
