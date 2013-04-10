@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.core.context_processors import csrf
-from GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
+from gradecenter.GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
 import datetime
 import calendar
 from django.utils import simplejson
@@ -144,8 +144,8 @@ def addwork(request):
 
 @login_required(login_url='/gradecenter/login/')
 def saveworkedit(request):
-
-    titles = simplejson.loads(request.POST["titles"])
+    if ("titles" in request.POST):
+        titles = simplejson.loads(request.POST["titles"])
     data = simplejson.loads(request.POST["data"])
 
     try:

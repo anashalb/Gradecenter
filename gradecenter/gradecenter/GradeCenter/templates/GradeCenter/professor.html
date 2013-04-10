@@ -4,25 +4,25 @@
 	Anas Halbawi
 	aih@qatar.cmu.edu
 -->
-
+{% load staticfiles %}
 <html>
 <head>
     <title>Grade Center</title>
-	<link type="text/css" href="/static/css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+	<link type="text/css" href="{% static "css/jquery-ui-1.8.16.custom.css"%}" rel="stylesheet" />	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/static/js/jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="/static/js/highcharts.js"></script>
-	<script type="text/javascript" src="/static/js/jquery-ui-timepicker.addon.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.color.js"></script>
-    <script type="text/javascript" src="/static/js/professorGraph.js"></script>
-    <script src="/static/js/professor.js"></script>
-    <link href="/static/css/professorstyle.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="{% static "js/jquery-ui-1.8.16.custom.min.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/highcharts.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/jquery-ui-timepicker.addon.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/jquery.color.js"%}"></script>
+    <script type="text/javascript" src="{% static "js/professorGraph.js"%}"></script>
+    <script src="{% static "js/professor.js"%}"></script>
+    <link href="{% static "css/professorstyle.css"%}" rel="stylesheet" type="text/css"/>
 </head>
 	
 <body onload="init();"> <!-- Start Body -->
 <header>
 		<div id="logo"> <!--Start of logo-->
-		<img src="/static/images/gradelogo.png" />
+		<img src="{% static "images/gradelogo.png"%}" />
 		</div> <!--End of logo-->
 		<div id="centertitle">
 		<p>{{course_number}} - {{course_name}}</p>

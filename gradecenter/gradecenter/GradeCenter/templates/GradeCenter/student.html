@@ -1,14 +1,15 @@
+{% load staticfiles %}
 <html> 
 <head> 
     <title>Grade Center</title> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
-    <script src="/static/js/student.js"></script> 
-    <link href="/static/css/studentstyle.css" rel="stylesheet" type="text/css"/> 
+    <script src="{% static "js/student.js"%}"></script> 
+    <link href="{% static "css/studentstyle.css"%}" rel="stylesheet" type="text/css"/> 
 </head> 
 <body align="left"> 
 	<header>
 		<div id="logo"> <!--Start of logo-->
-		<img src="/static/images/gradelogo.png" />
+		<img src="{%static "images/gradelogo.png"%}" />
 		</div> <!--End of logo-->
 		<div id="signin"> <!--Start of signin-->
 			<p>Welcome <a href="#" onclick="gotouser()">{{student.username}}</a> | <a href="#" onclick="logout()">Logout</a></p>
@@ -18,7 +19,7 @@
 	<div id="courseworkandnotifications"> <!-- Start of courseworkandnotifications-->
 		<div id="coursework"> <!-- Start of coursework-->
 			<div class="minmax">
-				<img class="courseworktoggle" onclick="courseworktoggle();" src="/static/images/minimize.png"/>
+				<img class="courseworktoggle" onclick="courseworktoggle();" src="{%static "images/minimize.png"%}"/>
 			</div>
 			<p>Course work</p>
 			<div id="selectcourse">
@@ -38,7 +39,7 @@
 		
 		<div id="notifications"> <!--Start of notifications-->
 			<div class="minmax">	
-				<img class="notificationstoggle" onclick="notificationstoggle();" src="/static/images/minimize.png"/>
+				<img class="notificationstoggle" onclick="notificationstoggle();" src="{%static "images/minimize.png"%}"/>
 			</div>
 			<p>Notifications</p>
 			<div id="notifications_table"> <!--Start of notifications_table-->
@@ -71,7 +72,7 @@
 		<div id="listandgpa">
 		<div id="courselist"> <!--Start of course list-->
 			<div class="minmax">
-				<img class="courselisttoggle" onclick="courselisttoggle();" src="/static/images/minimize.png"/>
+				<img class="courselisttoggle" onclick="courselisttoggle();" src="{%static "images/minimize.png"%}"/>
 			</div>
 			<p>Course List</p>
 			<div id="courselist_table"> <!--Start of courselist_table-->
@@ -100,7 +101,7 @@
 
 		<div id="gpa"> <!-- Start of gpa-->
 			<div class="minmax">
-				<img class="gpatoggle" onclick="gpatoggle();" src="/static/images/minimize.png"/>
+				<img class="gpatoggle" onclick="gpatoggle();" src="{%static "images/minimize.png"%}"/>
 			</div>
 			<p>Calculate your GPA</p>
 			<div id="gpa_table">

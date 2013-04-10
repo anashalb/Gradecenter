@@ -46,14 +46,14 @@ function courseworktoggle()
 	{
 		$("#coursework_table").slideUp();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "/gradecenter/images/maximize.png");
 		cwShown = false;
 	}
 	else
 	{
 		$("#coursework_table").slideDown();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "/gradecenter/images/minimize.png");
 		cwShown = true;
 	}
 }
@@ -64,14 +64,14 @@ function desccontenttoggle()
 	{
 		$("#desc_content").slideUp();
 		var x = document.getElementsByClassName("desccontenttoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "/gradecenter/images/maximize.png");
 		cdShown = false;
 	}
 	else
 	{
 		$("#desc_content").slideDown();
 		var x = document.getElementsByClassName("desccontenttoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "/gradecenter/images/minimize.png");
 		cdShown = true;
 	}
 }
@@ -82,14 +82,14 @@ function graphstoggle()
 	{
 		$("#graphs_body").slideUp();
 		var x = document.getElementsByClassName("graphstoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "/gradecenter/images/maximize.png");
 		gShown = false;
 	}
 	else
 	{
 		$("#graphs_body").slideDown();
 		var x = document.getElementsByClassName("graphstoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "/gradecenter/images/minimize.png");
 		gShown = true;
 	}
 }
@@ -118,6 +118,7 @@ function userGrades(n,y)
 	$.ajax({
 		url: "/gradecenter/usergrades/",
 		type: "POST",
+		contentType: "application/x-www-form-urlencoded",
 		data: "year=" + y + '&number=' + n,
 		success: function(data){
 				$('#projections').empty()
@@ -184,6 +185,7 @@ function average(n,y,s)
 	$.ajax({
 		url: "/gradecenter/average/",
 		type: "POST",
+		contentType: "application/x-www-form-urlencoded",
 		data: "year=" + y + '&number=' + n,
 		success: function(data){
 				$('#projections').empty()
@@ -252,6 +254,7 @@ function projections(n,y,s)
 		$.ajax({
 		url: "/gradecenter/projections/",
 		type: "POST",
+		contentType: "application/x-www-form-urlencoded",
 		data: "year=" + y + '&number=' + n,
 		success: function(data){
 				$('#projections').empty()

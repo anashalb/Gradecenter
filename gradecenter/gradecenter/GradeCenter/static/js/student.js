@@ -46,14 +46,14 @@ function courseworktoggle()
 	{
 		$("#coursework_table").slideUp();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src","images/maximize.png");
 		cwShown = false;
 	}
 	else
 	{
 		$("#coursework_table").slideDown();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src","images/minimize.png");
 		cwShown = true;
 	}
 }
@@ -64,14 +64,14 @@ function notificationstoggle()
 	{
 		$("#notifications_table").slideUp();
 		var x = document.getElementsByClassName("notificationstoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src","images/maximize.png");
 		nShown = false;
 	}
 	else
 	{
 		$("#notifications_table").slideDown();
 		var x = document.getElementsByClassName("notificationstoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src","images/minimize.png");
 		nShown = true;
 	}
 }
@@ -82,14 +82,14 @@ function courselisttoggle()
 	{
 		$("#courselist_table").slideUp();
 		var x = document.getElementsByClassName("courselisttoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src","images/maximize.png");
 		clShown = false;
 	}
 	else
 	{
 		$("#courselist_table").slideDown();
 		var x = document.getElementsByClassName("courselisttoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src","images/minimize.png");
 		clShown = true;
 	}
 }
@@ -100,14 +100,14 @@ function gpatoggle()
 	{
 		$("#gpa_table").slideUp();
 		var x = document.getElementsByClassName("gpatoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src","images/maximize.png");
 		gpaShown = false;
 	}
 	else
 	{
 		$("#gpa_table").slideDown();
 		var x = document.getElementsByClassName("gpatoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src","images/minimize.png");
 		gpaShown = true;
 	}
 }
@@ -118,6 +118,7 @@ function selectcourse(id)
 		url: "/gradecenter/coursework/",
 		type: "POST",
 		data: "id=" + id,
+		contentType: "application/x-www-form-urlencoded",
 		success: function(data){
 				$("#coursework_table").empty();
 				$("#coursework_table").append(data);

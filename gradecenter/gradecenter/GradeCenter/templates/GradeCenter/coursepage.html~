@@ -6,7 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="{% static "js/coursepage.js"%}"></script> 
-	<script type="text/javascript" src="{% static "js/highcharts.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/highchart.js"%}"></script>
     <link href="{% static "css/coursepagestyle.css"%}" rel="stylesheet" type="text/css"/> 
 </head>
  

@@ -1,4 +1,4 @@
-from GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
+from gradecenter.GradeCenter.models import Professor,Student, Course, Course_Instance, Enroll, Work, Grade, Final_Grade
 from django.contrib import admin
 
 admin.site.register(Professor)

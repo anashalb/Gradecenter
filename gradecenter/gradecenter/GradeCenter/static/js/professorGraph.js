@@ -67,6 +67,7 @@ function getchart(n,y)
 		url: "/gradecenter/professorgraphs/",
 		type: "POST",
 		data: "year=" + y + "&number=" + n + "&student=" + student + "&work=" + work + "&showaverage=" + showaverage,
+		contentType: "application/x-www-form-urlencoded",
 		success: function(data){
 				ar = JSON.parse(data);
 				if (graph == "average")
@@ -110,6 +111,7 @@ function userGrades(n,y)
 		url: "/gradecenter/usergrades/",
 		type: "POST",
 		data: "year=" + y + '&number=' + n,
+		contentType: "application/x-www-form-urlencoded",
 		success: function(data){
 				ar = JSON.parse(data);
 				userGradesChart(ar);			
@@ -185,6 +187,7 @@ function average(n,y,s)
 		url: "/gradecenter/average/",
 		type: "POST",
 		data: "year=" + y + '&number=' + n,
+		contentType: "application/x-www-form-urlencoded",
 		success: function(data){
 				ar = JSON.parse(data);
 				averageChart(ar);			
@@ -252,6 +255,7 @@ function projections(n,y,s)
 		url: "/gradecenter/projections/",
 		type: "POST",
 		data: "year=" + y + '&number=' + n,
+		contentType: "application/x-www-form-urlencoded",
 		success: function(data){
 				$('#projections').append(data);
 			}

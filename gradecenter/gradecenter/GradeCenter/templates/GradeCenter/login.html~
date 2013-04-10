@@ -3,7 +3,7 @@
 <head>
 	<title>Grade Center</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
-    <link href="{% static "css/loginstyle.css"%}" rel="stylesheet" type="text/css"/> 
+    <link href="/gradecenter/css/loginstyle.css" rel="stylesheet" type="text/css"/> 
 </head>
 
 {% if message %}
@@ -11,7 +11,7 @@
 {% endif %}
 
 <div id="logo">
-<img src="{%static "images/logologin.png"%}"/>
+<img src=" {%static "images/logologin.png"%}"/>
 </div>
 <div id="loginform">
 <form method="post" action="{% url 'django.contrib.auth.views.login'  %}">

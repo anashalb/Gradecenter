@@ -1,6 +1,7 @@
+{% load staticfiles %}
 	<div id="coursework"> <!-- Start of coursework-->
 			<div class="minmax">
-					<img class="courseworktoggle" onclick="courseworktoggle();" src="/static/images/minimize.png"/>
+					<img class="courseworktoggle" onclick="courseworktoggle();" src="{%static "images/minimize.png"%}"/>
 			</div>
 			<p>Course work</p>
 			<div id="coursework_table"> <!--Start of coursework_table-->
@@ -33,7 +34,7 @@
 
 	<div id="gradeslist"><!--Start of gradeslist-->
 	<div class="minmax">
-			<img class="finalgradestoggle" onclick="finalgradestoggle();" src="/static/images/minimize.png"/>
+			<img class="finalgradestoggle" onclick="finalgradestoggle();" src="{%static "images/minimize.png"%}"/>
 	</div>
 	<p>Final Grades List</p>
 		<div id="gradeslist_table">
@@ -60,7 +61,7 @@
 
 	<div id="gradeuploader">
 		<div class="minmax">
-				<img class="gradeuploadertoggle" onclick="gradeuploadertoggle();" src="/static/images/minimize.png"/>
+				<img class="gradeuploadertoggle" onclick="gradeuploadertoggle();" src="{%static "images/minimize.png"%}"/>
 		</div>
 		<p>Grade uploader</p>
 		<div id="gradeuploader_table">
@@ -97,7 +98,7 @@
     </div>
 	<div id="graphs"> <!--Start of graphs-->
 		<div class="minmax">
-				<img class="graphstoggle" onclick="graphstoggle();" src="/static/images/minimize.png"/>
+				<img class="graphstoggle" onclick="graphstoggle();" src="{%static "images/minimize.png"%}"/>
 		</div>
 		<p>Graphs</p>
 		<div id="graphs_content"> <!--Start of graphs_content-->

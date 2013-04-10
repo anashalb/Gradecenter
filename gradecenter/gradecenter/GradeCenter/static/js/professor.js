@@ -65,14 +65,14 @@ function courseworktoggle()
 	{
 		$("#coursework_table").slideUp();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "images/maximize.png");
 		cwShown = false;
 	}
 	else
 	{
 		$("#coursework_table").slideDown();
 		var x = document.getElementsByClassName("courseworktoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "images/minimize.png");
 		cwShown = true;
 	}
 }
@@ -83,14 +83,14 @@ function gradeuploadertoggle()
 	{
 		$("#gradeuploader_table").slideUp();
 		var x = document.getElementsByClassName("gradeuploadertoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "images/maximize.png");
 		guShown = false;
 	}
 	else
 	{
 		$("#gradeuploader_table").slideDown();
 		var x = document.getElementsByClassName("gradeuploadertoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "images/minimize.png");
 		guShown = true;
 	}
 }
@@ -101,14 +101,14 @@ function graphstoggle()
 	{
 		$("#graphs_body").slideUp();
 		var x = document.getElementsByClassName("graphstoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "images/maximize.png");
 		gShown = false;
 	}
 	else
 	{
 		$("#graphs_body").slideDown();
 		var x = document.getElementsByClassName("graphstoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "images/minimize.png");
 		gShown = true;
 	}
 }
@@ -119,14 +119,14 @@ function finalgradestoggle()
 	{
 		$("#gradeslist_table").slideUp();
 		var x = document.getElementsByClassName("finalgradestoggle")
-		x[0].setAttribute("src", "/static/images/maximize.png");
+		x[0].setAttribute("src", "images/maximize.png");
 		fgShown = false;
 	}
 	else
 	{
 		$("#gradeslist_table").slideDown();
 		var x = document.getElementsByClassName("finalgradestoggle")
-		x[0].setAttribute("src", "/static/images/minimize.png");
+		x[0].setAttribute("src", "images/minimize.png");
 		fgShown = true;
 	}
 }
@@ -148,7 +148,7 @@ function removeWork(id)
              type: "POST",
              data: "workid=" + id,
              processData: false,
-             contentType: false,
+             contentType: "application/x-www-form-urlencoded",
              success: function (data) {
                 $("#coursework_section_" + data["title"]).remove();
                 ($("#" + data['title'])).remove();
@@ -261,7 +261,7 @@ function addToWork( course_number, course_year ){
          data: "title=" + title + "&description=" + description + "&duedate=" + duedate + "&duetime=" + duetime + "&maxpoints=" + maxpoints
              + "&weight=" + weight + "&course_number=" + course_number + "&course_year=" + course_year,
          processData: false,
-         contentType: false,
+         contentType: "application/x-www-form-urlencoded",
          success: function (data) {
                 $(data).insertBefore($(".coursework_section_upload"));
 
@@ -348,7 +348,7 @@ function saveWorkEdit(id)
         break;
     case 1:
         field = "description"       
-        break
+        break;
     case 2:
         field = "duedate"
         break;
@@ -375,7 +375,7 @@ function saveWorkEdit(id)
         type: "POST",
         dataType: 'json',
         data: "titles=" + JSON.stringify(titles) + "&data=" + JSON.stringify(data),
-        contentType: 'application/json', 
+        contentType: "application/x-www-form-urlencoded",
         success: function (data) {
             if((data["title"] != content) && (field == "title"))
             {
@@ -499,7 +499,7 @@ function saveGradeEdit(student, workid)
         type: "POST",
         data: "workid=" + workid + "&student=" + student + "&grade=" + grade,
         processData: false,
-        contentType: false,
+        contentType: "application/x-www-form-urlencoded",
         success: function (data) {
             if(data["grade"] != grade)
             {
@@ -568,7 +568,7 @@ function saveFinalGradeEdit(student, courseinstanceid)
         type: "POST",
         data: "student=" + student + "&grade=" + grade  + "&courseinstanceid=" + courseinstanceid,
         processData: false,
-        contentType: false,
+        contentType: "application/x-www-form-urlencoded",
         success: function (data) {
             if(data != grade)
             {
